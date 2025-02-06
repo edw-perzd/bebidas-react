@@ -1,10 +1,19 @@
-import { useMemo } from "react";
+import { ChangeEvent, useMemo, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
 export default function Header() {
   const { pathname } = useLocation()
   const isHome = useMemo(() => pathname === '/', [pathname])
-  console.log(isHome)
+  const [searchFilters, setSearchFilters] = useState({
+    ingredient: '',
+    category: ''
+  })
+
+  function handleChange(e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>){
+    setSearchFilters({
+      ...searchFilters, [e.target.name]: e.target.value
+    })
+  }
 
   return (
     <>
@@ -41,6 +50,7 @@ export default function Header() {
                   <input 
                     id='ingredient'
                     type="text" 
+                    onChange={handleChange}
                     name="ingredient"
                     className="p-3 w-full rounded-lg focus:outline-none"
                     placeholder="Nombre o Ingrediente. Ej. Vodka, Tequila Café"
@@ -55,6 +65,7 @@ export default function Header() {
                   <select 
                     id='category'
                     name="category"
+                    onChange={handleChange}
                     className="p-3 w-full rounded-lg focus:outline-none"
                     >
                       <option value="">-- Seleccione --</option>
