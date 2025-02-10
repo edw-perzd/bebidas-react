@@ -1,5 +1,6 @@
-import { ChangeEvent, useMemo, useState } from "react";
+import { ChangeEvent, useEffect, useMemo, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
+import { useAppStore } from "../stores/useAppStore";
 
 export default function Header() {
   const { pathname } = useLocation()
@@ -8,6 +9,14 @@ export default function Header() {
     ingredient: '',
     category: ''
   })
+
+  const categories = useAppStore((state) => state.categories)
+  const fetchCategories = useAppStore((state) => state.fetchCategories)
+  console.log(categories.drinks)
+
+  useEffect(() => {
+    fetchCategories()
+  }, [])
 
   function handleChange(e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>){
     setSearchFilters({
@@ -69,6 +78,11 @@ export default function Header() {
                     className="p-3 w-full rounded-lg focus:outline-none"
                     >
                       <option value="">-- Seleccione --</option>
+                      {
+                        categories.drinks.map(category => (
+                          <option key={category.strCategory} value={category.strCategory}>{category.strCategory}</option>
+                        ))
+                      }
                     </select>
               </div>
               <input 
