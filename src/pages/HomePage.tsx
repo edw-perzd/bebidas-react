@@ -1,5 +1,6 @@
 import { useMemo } from "react"
 import { useAppStore } from "../stores/useAppStore"
+import DrinkCard from "../componentes/DrinkCard"
 
 export default function HomePage(){
 
@@ -8,17 +9,19 @@ export default function HomePage(){
 
     return(
         <>
-            <h1>Recetas</h1>
+            <h1 className="text-6xl font-extrabold">Recetas</h1>
             {hasRecipes? (
                 <>
-                <p>Si hay recetas</p>
-                <ul>
+                <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 my-10 gap-10">
                     {
                         recipes.drinks.map(drink => (
-                            <li key={drink.idDrink}>{drink.strDrink}</li>
+                            <DrinkCard 
+                                drink={drink}
+                                key={drink.idDrink}
+                            />
                         ))
                     }
-                </ul>
+                </div>
                 </>
             ): (
                 <p>No hay recetas todavia, busca con el formulario</p>
