@@ -44,7 +44,7 @@ export default function Header() {
                     <img className="w-32" src="/logo.svg" alt="logotipo" />
                 </div>
 
-                <nav>
+                <nav className="flex gap-4">
                   <NavLink 
                     className={({isActive}) => isActive ? 
                     "text-orange-400 uppercase":
