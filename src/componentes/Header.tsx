@@ -42,7 +42,7 @@ export default function Header() {
 
   return (
     <>
-    <header className={isHome? 'bg-header bg-cover bg-center': 'bg-slate-800'}>
+    <header className={isHome? 'bg-header bg-cover bg-center px-14': 'bg-slate-800 px-14'}>
         <div className="mx-auto container px-5 py-16">
             <div className="flex justify-between items-center">
                 <div>
