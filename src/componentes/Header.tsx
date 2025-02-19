@@ -3,6 +3,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import { useAppStore } from "../stores/useAppStore";
 
 export default function Header() {
+  const showNotification = useAppStore(state => state.showNotification)
   const { pathname } = useLocation()
   const isHome = useMemo(() => pathname === '/', [pathname])
   const [searchFilters, setSearchFilters] = useState({
@@ -28,7 +29,11 @@ export default function Header() {
     e.preventDefault()
 
     if(Object.values(searchFilters).includes('')){
-      console.log('No dejar campos en blanco')
+      showNotification({
+        text: 'No dejar espacios en blanco',
+        error: true
+      })
+      // console.log('No dejar campos en blanco')
       return
     }
 

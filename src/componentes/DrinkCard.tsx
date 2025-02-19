@@ -10,7 +10,7 @@ export default function DrinkCard({ drink }: DrinkCardProps){
     const selectRecipe = useAppStore(state => state.selectRecipe)
 
     return (
-        <div className="border shadow-lg">
+    <div className="border shadow-lg rounded-xl">
         <div className="overflow-hidden">
             <img 
             src={drink.strDrinkThumb} 
@@ -25,7 +25,7 @@ export default function DrinkCard({ drink }: DrinkCardProps){
             <button
                 type="button"
                 onClick={() => selectRecipe(drink.idDrink)}
-                className="bg-orange-400 hover:bg-orange-500 mt-5 w-full p-3 font-bold text-white text-lg"
+                className="bg-orange-400 hover:bg-orange-500 mt-5 w-full p-3 font-bold text-white text-lg rounded"
                 >Ver Receta</button>
         </div>
     </div>
